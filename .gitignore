@@ -1,2 +1,5 @@
 #ignore aws information
 config.json
+
+#ignore node-module
+node_modules/
