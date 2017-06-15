@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Text File Uploader </title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway'  type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <style type="text/css">
+          
+
+      .user-profiles-list-small{
+          list-style:none;
+          text-align: center;
+          margin: 0 auto;
+          max-width: 900px;
+          padding: 0;
+      }
+
+      .user-profiles-list-small li{
+          display: inline-block;
+          box-sizing:border-box;
+          position: relative;
+
+          text-align:left;
+          font:normal 14px sans-serif;
+
+          background-color:#f4f8fa;
+          border:1px solid #dbe3e7;
+          box-shadow: 0 2px 3px #dbe3e7;
+
+          width:260px;
+          margin: 12px;
+      }
+
+      .user-profiles-list-small .user-avatar{
+          float: left;
+          padding: 10px 15px;
+      }
+
+      .user-profiles-list-small .user-avatar {
+          border-radius: 20%;
+          border:0;
+      }
+
+      .user-profiles-list-small .user-name{
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          margin: 19px 0 0;
+          max-width: 150px;
+      }
+
+      .user-profiles-list-small .user-name a{
+          color:#5d6569;
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      .user-profiles-list-small .user-name span{
+          display: block;
+          font-size: 11px;
+          color:#808d93;
+          padding-top:4px;
+      }
+
+      .user-profiles-list-small .delete{
+          background-color:#de4a4a;
+          border-radius: 50%;
+          color:#fff;
+          font-size:13px;
+          line-height: 22px;
+          width:22px;
+          height: 22px;
+          position: absolute;
+          top:-10px;
+          right:-10px;
+          text-align: center;
+          text-decoration: none;
+      }
+
+
+
+
+
+
+
+
+
+          .btn:focus, .upload-btn:focus{
+        outline: 0 !important;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background-color: #4791D2;
+      }
+
+      body {
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+      }
+
+      .row {
+        margin-top: 80px;
+      }
+
+      .upload-btn {
+        color: #ffffff;
+        background-color: #F89406;
+        border: none;
+      }
+
+      .add-btn {
+        color: #ffffff;
+        background-color: #61BEF7;
+        border: none;
+      }
+
+      .upload-btn:hover,
+      .upload-btn:focus,
+      .upload-btn:active,
+      .upload-btn.active {
+        color: #ffffff;
+        background-color: #FA8900;
+        border: none;
+      }
+
+      h4 {
+        padding-bottom: 30px;
+        color: #B8BDC1;
+      }
+
+      .glyphicon {
+        font-size: 5em;
+        color: #9CA3A9;
+      }
+
+      h2 {
+        margin-top: 15px;
+        color: #68757E;
+      }
+
+      .panel {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
+      #upload-input {
+        display: none;
+      }
+      .service-box{max-width:400px;margin:50px auto 0}
+
+      #link {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        .main-container {
+          width: 100%;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .container {
+          width: 450px;
+        }
+      }
+  </style> 
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>Text File Uploader</h2>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add to Feed</h4>
+        </div>
+        <div class="modal-body">
+        <div >
+        <div>
+          <form>
+            <div class="form-group">
+              <label for="lg_name" class="sr-only">name</label>
+              <input type="text" class="form-control" id="name" name="lg_name" placeholder="name">
+            </div>
+            <div class="form-group">
+              <label for="email" class="sr-only">email</label>
+              <input type="email" class="form-control" id="email" name="lg_email" placeholder="email">
+            </div>
+            <div class="form-group login-group-checkbox">
+              <input type="checkbox" id="anony" name="lg_anony">
+              <label for="lg_anony">Anonyomus</label>
+            </div>
+          </form>
+          </div>
+          </div>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" disabled="disabled" id="submit" data-dismiss="modal">submit</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br></br>
+
+  <div class="row" id="addToFeed" style="display: none">
+    <div class="col-xs-1"></div>
+    <div class="panel col-xs-7" >
+        <h3 > click on the url to download, on the button to add to the feed: <h3>
+        <a href="" id='link' >  </a>
+    </div>
+    <div class = "col-xs-4">
+      <button class="btn btn-lg add-btn" style="padding:  130px 30px 185px 30px" type="button" data-toggle="modal" data-target= "#myModal">Add</button>
+    </div>
+  </div>
+
+
+  <ul class="user-profiles-list-small" id="feed">
+  </ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script > 
+  var feedElement = {};
+  var feeds = [];
+ 
+  (function() {
+     $.ajax({
+      url: '/feeds',
+      type: 'GET',
+      contentType: 'application/json',
+      complete: function(data){
+        if(data.status == 200){
+          JSON.parse(data.responseText).forEach(function(element){
+                
+            $('#feed').append(`<li><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><a href=${element.downloadUrl}><i class="fa fa-cloud-download fa-4x" aria-hidden="true"></i></a></div></div><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><h3 class="text-muted">file name: ${element.fileName}</h3></div></div><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><h3 class="text-muted">name: ${(element.anony)?"Anonyomus":element.name}</h3></div></div></li>`)
+          })
+        }
+      }
+    });
+    $('#name, #email').keyup(function() {
+
+        var empty = false;
+        
+        if ($('#name').val() == '' || $('#email').val() == '') {
+                empty = true;
+            }
+        
+        if (empty) {
+            $('#submit').attr('disabled', 'disabled'); 
+        } else {
+            $('#submit').removeAttr('disabled'); 
+        }
+    });
+  })()
+
+  $('.upload-btn').on('click', function (){
+    $('#upload-input').click();
+    $('.progress-bar').text('0%');
+    $('.progress-bar').width('0%');
+  });
+
+  $('#upload-input').on('change', function(){
+
+    var files = $(this).get(0).files;
+    if (files.length > 0){
+      // create a FormData object which will be sent as the data payload in the
+      // AJAX request
+      var formData = new FormData();
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        formData.append('uploads[]', file, file.name);
+      }
+
+      feedElement.fileName = file.name;
+      
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        complete: function(data){
+          if(data.status == 200){
+            var temp = data.responseText;
+            let link = document.getElementById('link'), AddFeed = document.getElementById('addToFeed');
+            AddFeed.style.display ="block";
+            link.href= data.responseText;
+            feedElement.downloadUrl = temp;
+            $('#link').text('')
+            link.append( temp.split('/')[temp.split('/').length -1].split('?')[0]);
+          }
+        },
+        //calculate the update progress and update bar progress 
+        xhr: function() {
+          var xhr = new XMLHttpRequest();
+          xhr.upload.addEventListener('progress', function(evt) {
+
+            if (evt.lengthComputable) {
+              var percentComplete = evt.loaded / evt.total;
+              percentComplete = parseInt(percentComplete * 100);
+              $('.progress-bar').text(percentComplete + '%');
+              $('.progress-bar').width(percentComplete + '%');
+              if (percentComplete === 100) {
+                $('.progress-bar').html('Done');
+              }
+            }
+          }, false);
+          return xhr;
+        }
+      });
+    }
+  });
+
+  $('#submit').on('click', function(){
+    feedElement.name = $("#name").val();
+    feedElement.email = $("#email").val();
+    feedElement.anony = $("#anony:checked").length;
+
+    $.ajax({
+      url: '/addfeed',
+      type: 'POST',
+      data: JSON.stringify(feedElement),
+      contentType: 'application/json',
+      complete: function(data){
+        if(data.status == 200){
+        
+          $('#feed').append(`<li><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><a href=${feedElement.downloadUrl}><i class="fa fa-cloud-download fa-4x" aria-hidden="true"></i></a></div></div><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><h3 class="text-muted">file name: ${feedElement.fileName}</h3></div></div><div class="col-lg-3 col-md-6 text-center"><div class="service-box"><h3 class="text-muted">name: ${(feedElement.anony)?"Anonyomus":feedElement.name}</h3></div></div></li>`)
+
+          $("#name").val('');
+          $("#email").val('');
+        }
+      }
+    })
+  });
+  </script>
+</body>
+</html>
